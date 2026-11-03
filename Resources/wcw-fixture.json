@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "company": "wcw",
+  "revision": 1,
+  "retiredSources": [],
+  "sources": {
+    "schemaVersion": 1,
+    "archive": {
+      "enabled": true,
+      "collections": [{"id": "wcw-pro-10-20-90_202404", "name": "WCW Pro", "enabled": true}]
+    },
+    "youtube": {"enabled": true, "channelId": "UCbGG2hv4cWmIrBAIhGiCdSg", "playlists": [], "videos": []}
+  },
+  "catalogue": {
+    "schemaVersion": 1,
+    "episodes": [
+      {
+        "id": "1997-01-06:nitro",
+        "date": "1997-01-06",
+        "year": 1997,
+        "show": "Nitro",
+        "title": "WCW Monday Nitro",
+        "description": "A representative WCW 1997 catalogue fixture.",
+        "category": "weekly",
+        "sources": [{"type": "archive", "url": "https://archive.org/download/wcw-pro-10-20-90_202404/WCW%20PRO%207-7-90.mp4", "label": "Internet Archive"}]
+      },
+      {
+        "id": "1997-01-11:saturdaynight",
+        "date": "1997-01-11",
+        "year": 1997,
+        "show": "Saturday Night",
+        "title": "World Championship Wrestling",
+        "category": "weekly",
+        "sources": [{"type": "archive", "url": "https://archive.org/download/wcw-pro-10-20-90_202404/WCW%20PRO%207-7-90.mp4", "label": "Internet Archive"}]
+      },
+      {
+        "id": "1997-01-12:superbrawl",
+        "date": "1997-01-12",
+        "year": 1997,
+        "show": "PPV",
+        "title": "SuperBrawl VII",
+        "category": "ppv",
+        "eventOrder": 1,
+        "sources": [{"type": "archive", "url": "https://archive.org/download/wcw-pro-10-20-90_202404/WCW%20PRO%207-7-90.mp4", "label": "Internet Archive"}]
+      },
+      {
+        "id": "1997-01-12:worldwide",
+        "date": "1997-01-12",
+        "year": 1997,
+        "show": "Worldwide",
+        "title": "WCW Worldwide",
+        "category": "weekly",
+        "sources": [{"type": "youtube", "videoId": "AAAAAAAAAAA", "channelId": "UCbGG2hv4cWmIrBAIhGiCdSg", "title": "Unsupported fixture source"}]
+      }
+    ],
+    "eventCalendar": [],
+    "archiveItems": ["wcw-pro-10-20-90_202404"],
+    "playlists": [],
+    "showArtwork": {}
+  }
+}

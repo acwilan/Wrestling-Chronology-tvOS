@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "company": "wwe",
+  "revision": 1,
+  "retiredSources": [],
+  "sources": {
+    "schemaVersion": 1,
+    "archive": {
+      "enabled": true,
+      "collections": [{"id": "wwe-fixture-public", "name": "WWE fixture", "enabled": true}]
+    },
+    "youtube": {"enabled": true, "channelId": "UCbGG2hv4cWmIrBAIhGiCdSg", "playlists": [], "videos": []}
+  },
+  "catalogue": {
+    "schemaVersion": 1,
+    "episodes": [
+      {
+        "id": "1997-01-06:raw",
+        "date": "1997-01-06",
+        "year": 1997,
+        "show": "Raw",
+        "title": "WWF Monday Night Raw",
+        "description": "A representative WWE catalogue fixture.",
+        "category": "weekly",
+        "sources": [{"type": "archive", "url": "https://archive.org/download/wwe-fixture-public/example.mp4", "label": "Internet Archive"}]
+      },
+      {
+        "id": "1997-01-12:ppv",
+        "date": "1997-01-12",
+        "year": 1997,
+        "show": "PPV",
+        "title": "WWF Royal Rumble",
+        "category": "ppv",
+        "sources": [{"type": "archive", "url": "https://archive.org/download/wwe-fixture-public/example.mp4", "label": "Internet Archive"}]
+      }
+    ],
+    "eventCalendar": [],
+    "archiveItems": ["wwe-fixture-public"],
+    "playlists": [],
+    "showArtwork": {}
+  }
+}
