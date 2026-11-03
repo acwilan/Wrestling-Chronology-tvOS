@@ -1,0 +1,107 @@
+name: Release unsigned tvOS artifact
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Marketing version, for example 0.1.0"
+        required: true
+        default: "0.1.0"
+      build_number:
+        description: "CFBundleVersion/build number"
+        required: true
+        default: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: xcodebuild -version
+
+      - name: Resolve release metadata
+        id: metadata
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            version="${{ inputs.version }}"
+            build_number="${{ inputs.build_number }}"
+            tag="v${version}"
+          else
+            tag="${GITHUB_REF_NAME}"
+            version="${tag#v}"
+            build_number="${GITHUB_RUN_NUMBER}"
+          fi
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "build_number=${build_number}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+      - name: Build unsigned IPA
+        run: |
+          chmod +x scripts/package_unsigned_tvos.sh
+          scripts/package_unsigned_tvos.sh \
+            "$GITHUB_WORKSPACE/dist" \
+            "${{ steps.metadata.outputs.version }}" \
+            "${{ steps.metadata.outputs.build_number }}"
+
+      - name: Generate AltStore-compatible feed
+        env:
+          VERSION: ${{ steps.metadata.outputs.version }}
+          BUILD_NUMBER: ${{ steps.metadata.outputs.build_number }}
+          TAG: ${{ steps.metadata.outputs.tag }}
+        run: |
+          chmod +x scripts/generate_altstore_feed.sh
+          size=$(jq -r '.size' dist/release-metadata.json)
+          sha256=$(jq -r '.sha256' dist/release-metadata.json)
+          download_url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/WrestlingChronology-tvOS.ipa"
+          scripts/generate_altstore_feed.sh \
+            "$VERSION" \
+            "$BUILD_NUMBER" \
+            "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            "$download_url" \
+            "$size" \
+            "$sha256" \
+            dist/apps.json
+          jq empty dist/apps.json
+
+      - name: Write release notes
+        env:
+          VERSION: ${{ steps.metadata.outputs.version }}
+          TAG: ${{ steps.metadata.outputs.tag }}
+        run: |
+          cat > dist/RELEASE_NOTES.md <<EOF
+          # Wrestling Chronology for tvOS ${VERSION}
+
+          This release contains an unsigned tvOS IPA for user-signed sideloading.
+          It is not signed with the project maintainer's Apple Developer team.
+
+          Use [DISTRIBUTION.md](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG}/docs/DISTRIBUTION.md)
+          for Xcode installation and optional AltStore-compatible tooling.
+          EOF
+
+      - name: Create or reuse GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.metadata.outputs.tag }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: |
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --title "Wrestling Chronology for tvOS ${VERSION}" \
+              --notes-file dist/RELEASE_NOTES.md
+          fi
+          gh release upload "$TAG" \
+            dist/WrestlingChronology-tvOS.ipa \
+            dist/WrestlingChronology-tvOS.sha256 \
+            dist/release-metadata.json \
+            dist/apps.json \
+            --clobber

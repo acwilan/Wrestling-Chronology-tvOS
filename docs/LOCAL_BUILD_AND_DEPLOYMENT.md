@@ -27,10 +27,9 @@ select an Apple TV simulator. For hardware deployment, select the connected Appl
 TV in the run-destination menu and choose your team under the app target's
 **Signing & Capabilities** settings.
 
-The project contains a development-team value for the repository's original
-environment. If you use another team, change the signing team locally in Xcode
-or pass `DEVELOPMENT_TEAM` on the command line; do not commit personal signing
-or provisioning changes.
+The repository intentionally does not contain a development-team value. Select
+your own team locally in Xcode or pass `DEVELOPMENT_TEAM` on the command line;
+do not commit personal signing or provisioning changes.
 
 ## Signing-free SDK build
 

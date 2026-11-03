@@ -304,7 +304,6 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = LT3ZSC5BDA;
 				PRODUCT_NAME = "WrestlingChronology-tvOS";
 			};
 			name = Release;
@@ -325,7 +324,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LT3ZSC5BDA;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -335,6 +333,7 @@
 				);
 					PRODUCT_BUNDLE_IDENTIFIER = "org.community.wrestling-chronology.tvOS";
 					PRODUCT_NAME = "$(TARGET_NAME)";
+					MARKETING_VERSION = 0.1.0;
 					ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 					SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -351,7 +350,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -360,6 +358,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.community.wrestling-chronology.tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 0.1.0;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
@@ -375,7 +374,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.community.wrestling-chronology.tvOSTests";
