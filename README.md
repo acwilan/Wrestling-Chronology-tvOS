@@ -48,6 +48,7 @@ The app validates the manifest and every downloaded pack before replacing a cach
 
 See:
 
+- [Local build and deployment](docs/LOCAL_BUILD_AND_DEPLOYMENT.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Upstream compatibility](docs/UPSTREAM_COMPATIBILITY.md)
 - [Testing](docs/TESTING.md)
