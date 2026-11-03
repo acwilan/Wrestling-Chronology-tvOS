@@ -60,8 +60,28 @@ final class AppModel: ObservableObject {
             library = try await repository.library(for: selectedCompany)
             if selectedYear == nil { selectedYear = years.last }
             await reloadHistory()
-            if let status = await repository.status() { statusMessage = status.message }
-            else { statusMessage = "Offline catalogue ready" }
+            let company = selectedCompany
+            statusMessage = "Offline catalogue ready; refreshing (company.displayName)…"
+            Task { [weak self] in
+                guard let self else { return }
+                let refreshStatus = await self.repository.refresh(company: company)
+                guard self.selectedCompany == company else { return }
+                if refreshStatus.kind == .refreshed {
+                    self.library = try? await self.repository.library(for: company)
+                    if let yearsLast = self.years.last, self.selectedYear == nil || !self.years.contains(self.selectedYear ?? 0) {
+                        self.selectedYear = yearsLast
+                    }
+                    await self.reloadHistory()
+                }
+                switch refreshStatus.kind {
+                case .failed:
+                    self.statusMessage = "Offline catalogue ready — online refresh unavailable: (refreshStatus.message)"
+                case .bundled:
+                    self.statusMessage = "Bundled catalogue ready"
+                default:
+                    self.statusMessage = refreshStatus.message
+                }
+            }
         } catch {
             statusMessage = error.localizedDescription
         }

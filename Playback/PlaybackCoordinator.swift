@@ -24,6 +24,7 @@ final class PlaybackCoordinator: ObservableObject {
     private let history: HistoryStore
     private var progressTimer: Timer?
     private var endObserver: NSObjectProtocol?
+    private var failureObserver: NSObjectProtocol?
     private var currentCompany: CompanyID?
     private var autoplay: Bool
 
@@ -52,6 +53,8 @@ final class PlaybackCoordinator: ObservableObject {
         for source in ordered {
             do {
                 let plan = try await resolver.resolve(source)
+                guard let firstURL = plan.urls.first else { throw PlaybackError.noEligibleSource }
+                try await validateFirstAsset(firstURL)
                 let items = plan.urls.map { AVPlayerItem(url: $0) }
                 guard !items.isEmpty else { continue }
                 let queue = AVQueuePlayer(items: items)
@@ -78,6 +81,8 @@ final class PlaybackCoordinator: ObservableObject {
         progressTimer = nil
         if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
         endObserver = nil
+        if let failureObserver { NotificationCenter.default.removeObserver(failureObserver) }
+        failureObserver = nil
         player?.pause()
         player = nil
         selectedSource = nil
@@ -119,6 +124,36 @@ final class PlaybackCoordinator: ObservableObject {
                     self.currentPart += 1
                 }
             }
+        }
+        failureObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime, object: nil, queue: .main) { [weak self] notification in
+            Task { @MainActor [weak self] in
+                guard let self, let item = notification.object as? AVPlayerItem, item === queue.currentItem else { return }
+                self.player?.pause()
+                let detail = (notification.userInfo?[AVPlayerItemFailedToPlayToEndTimeErrorKey] as? Error)?.localizedDescription
+                self.state = .failed(detail.map { "Playback stopped: \($0)" } ?? "Playback stopped because the provider could not deliver this recording.")
+            }
+        }
+    }
+
+    private func validateFirstAsset(_ url: URL) async throws {
+        do {
+            let playable = try await withThrowingTaskGroup(of: Bool.self) { group in
+                group.addTask {
+                    let asset = AVURLAsset(url: url)
+                    return try await asset.load(.isPlayable)
+                }
+                group.addTask {
+                    try await Task.sleep(nanoseconds: 15_000_000_000)
+                    throw PlaybackError.unavailable("The provider did not respond within 15 seconds.")
+                }
+                defer { group.cancelAll() }
+                return try await group.next() ?? false
+            }
+            guard playable else { throw PlaybackError.assetNotPlayable }
+        } catch let error as PlaybackError {
+            throw error
+        } catch {
+            throw PlaybackError.unavailable("The provider could not make this recording available: (error.localizedDescription)")
         }
     }
 }

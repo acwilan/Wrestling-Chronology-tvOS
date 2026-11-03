@@ -129,8 +129,14 @@ actor CatalogRepository {
 
             let incoming = try decoder.decode(CataloguePack.self, from: data)
             try validate(incoming, company: company)
-            if let current, incoming.revision <= current.revision {
+            if let current, incoming.revision < current.revision {
                 throw CatalogValidationError.staleRevision(incoming.revision)
+            }
+            if let current, incoming.revision == current.revision {
+                loaded[company] = current
+                let result = RefreshStatus(company: company, kind: .unchanged, revision: current.revision, message: "Catalogue is already current")
+                lastStatus = result
+                return result
             }
             let merged = merge(previous: current, incoming: incoming)
             try validate(merged, company: company)

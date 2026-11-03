@@ -10,10 +10,12 @@ The MVP includes:
 
 - typed catalogue models and deterministic chronological ordering;
 - lazy manifest/company-pack loading with ETag, byte-count, SHA-256, schema, revision, and URL validation;
+- automatic online refresh after bundled-fixture startup, while retaining offline browsing when refresh fails;
 - atomic last-known-good catalogue caching and offline browsing;
 - continue watching, watched state, resume position, source preference, and autoplay settings;
 - SwiftUI company/year/search/detail browsing designed for Siri Remote focus navigation;
 - direct Internet Archive MP4 playback through AVKit, including multipart queue playback;
+- preflight AVAsset playability checks, bounded provider waits, and actionable playback failures;
 - visible-but-unsupported YouTube entries, so the app never performs unapproved extraction;
 - an About screen with upstream attribution and licence notices.
 
