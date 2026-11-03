@@ -62,7 +62,10 @@ actor CatalogRepository {
         self.client = client
         self.fileManager = fileManager
         self.bundle = bundle
-        self.cacheDirectory = cacheDirectory ?? fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        // Catalogue packs are re-downloadable and belong in Caches. This is
+        // writable on tvOS and avoids treating a refresh as durable user data.
+        // Watch history remains in Application Support via HistoryStore.
+        self.cacheDirectory = cacheDirectory ?? fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("WrestlingChronology", isDirectory: true)
         self.decoder = JSONDecoder()
         self.encoder = JSONEncoder()
@@ -147,7 +150,7 @@ actor CatalogRepository {
             return result
         } catch {
             let revision = loaded[company]?.revision ?? (try? readCachedPack(company))?.revision
-            let result = RefreshStatus(company: company, kind: .failed, revision: revision, message: error.localizedDescription)
+            let result = RefreshStatus(company: company, kind: .failed, revision: revision, message: refreshErrorMessage(error))
             lastStatus = result
             return result
         }
@@ -230,15 +233,44 @@ actor CatalogRepository {
     private func writeAtomically(_ data: Data, to destination: URL) throws {
         try fileManager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
         let temporary = destination.appendingPathExtension("tmp-\(UUID().uuidString)")
-        try data.write(to: temporary, options: .atomic)
-        if fileManager.fileExists(atPath: destination.path) {
-            let backup = destination.appendingPathExtension("last-good")
-            try? fileManager.removeItem(at: backup)
-            try? fileManager.copyItem(at: destination, to: backup)
-            _ = try fileManager.replaceItemAt(destination, withItemAt: temporary, backupItemName: nil, options: .usingNewMetadataOnly)
-        } else {
-            try fileManager.moveItem(at: temporary, to: destination)
+        do {
+            try data.write(to: temporary, options: .atomic)
+            if fileManager.fileExists(atPath: destination.path) {
+                let backup = destination.appendingPathExtension("last-good")
+                try? fileManager.removeItem(at: backup)
+                try fileManager.copyItem(at: destination, to: backup)
+
+                // FileManager.replaceItemAt can fail in the tvOS app sandbox
+                // with NSFileWriteNoPermission even when the directory is
+                // writable. A copy-backed remove/move keeps the last-good
+                // file and works with the sandbox's normal file operations.
+                do {
+                    try fileManager.removeItem(at: destination)
+                    try fileManager.moveItem(at: temporary, to: destination)
+                } catch {
+                    if !fileManager.fileExists(atPath: destination.path), fileManager.fileExists(atPath: backup.path) {
+                        try? fileManager.copyItem(at: backup, to: destination)
+                    }
+                    throw error
+                }
+            } else {
+                try fileManager.moveItem(at: temporary, to: destination)
+            }
+        } catch {
+            try? fileManager.removeItem(at: temporary)
+            throw error
         }
+    }
+
+    private func refreshErrorMessage(_ error: Error) -> String {
+        let nsError = error as NSError
+        let saveCodes = [CocoaError.Code.fileWriteNoPermission.rawValue,
+                         CocoaError.Code.fileWriteVolumeReadOnly.rawValue,
+                         CocoaError.Code.fileWriteOutOfSpace.rawValue]
+        if nsError.domain == NSCocoaErrorDomain, saveCodes.contains(nsError.code) {
+            return "Online catalogue refresh could not be saved; the offline catalogue was kept."
+        }
+        return error.localizedDescription
     }
 
     private func makeLibrary(_ pack: CataloguePack, loadedFromCache: Bool) -> CatalogLibrary {

@@ -28,4 +28,14 @@ final class ResolverTests: XCTestCase {
         XCTAssertFalse(OKRUHostValidator.isMediaURL("https://okcdn.ru.evil.example/file"))
         XCTAssertFalse(OKRUHostValidator.isMediaURL("http://video.okcdn.ru/file"))
     }
+
+    func testUnsupportedProvidersExposePublicHandoffURLs() {
+        let youtube = EpisodeSource(type: "youtube", url: nil, urls: nil, videoId: "abc123", videoIds: nil, channelId: "channel", owner: nil, title: nil, label: nil, filename: nil, programme: nil, duration: nil, bytes: nil, height: nil, language: nil, audioLanguage: nil, creator: nil)
+        let dailymotion = EpisodeSource(type: "dailymotion", url: nil, urls: nil, videoId: nil, videoIds: ["x7abc"], channelId: nil, owner: "approved", title: nil, label: nil, filename: nil, programme: nil, duration: nil, bytes: nil, height: nil, language: nil, audioLanguage: nil, creator: nil)
+        let okru = EpisodeSource(type: "okru", url: "https://ok.ru/video/123", urls: nil, videoId: "123", videoIds: nil, channelId: nil, owner: "approved", title: nil, label: nil, filename: nil, programme: nil, duration: nil, bytes: nil, height: nil, language: nil, audioLanguage: nil, creator: nil)
+
+        XCTAssertEqual(youtube.externalURL?.absoluteString, "https://www.youtube.com/watch?v=abc123")
+        XCTAssertEqual(dailymotion.externalURL?.absoluteString, "https://www.dailymotion.com/video/x7abc")
+        XCTAssertEqual(okru.externalURL?.absoluteString, "https://ok.ru/video/123")
+    }
 }

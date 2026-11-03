@@ -17,9 +17,10 @@ The MVP includes:
 - direct Internet Archive MP4 playback through AVKit, including multipart queue playback;
 - preflight AVAsset playability checks, bounded provider waits, and actionable playback failures;
 - visible-but-unsupported YouTube entries, so the app never performs unapproved extraction;
+- provider handoff buttons for unsupported YouTube, Dailymotion and OK.ru entries, which ask tvOS to open the public provider page in an installed app or URL handler;
 - an About screen with upstream attribution and licence notices.
 
-Dailymotion and OK.ru resolver boundaries are present but disabled by default until provider-specific tvOS validation and permission review are complete. WCtv, community APIs, artwork reuse, and iCloud sync are intentionally not exposed in this MVP.
+Dailymotion and OK.ru resolver boundaries are present but disabled by default until provider-specific tvOS validation and permission review are complete. Their public pages can still be handed off from episode details when the Apple TV has a compatible URL handler. This is not stream extraction or native playback. WCtv, community APIs, artwork reuse, and iCloud sync are intentionally not exposed in this MVP.
 
 ## Build
 
@@ -50,6 +51,7 @@ See:
 - [Architecture](docs/ARCHITECTURE.md)
 - [Upstream compatibility](docs/UPSTREAM_COMPATIBILITY.md)
 - [Testing](docs/TESTING.md)
+- [Roadmap](docs/ROADMAP.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 
 ## Attribution

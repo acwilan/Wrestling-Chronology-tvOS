@@ -61,7 +61,7 @@ final class AppModel: ObservableObject {
             if selectedYear == nil { selectedYear = years.last }
             await reloadHistory()
             let company = selectedCompany
-            statusMessage = "Offline catalogue ready; refreshing (company.displayName)…"
+            statusMessage = "Offline catalogue ready; refreshing \(company.displayName)…"
             Task { [weak self] in
                 guard let self else { return }
                 let refreshStatus = await self.repository.refresh(company: company)
@@ -75,7 +75,7 @@ final class AppModel: ObservableObject {
                 }
                 switch refreshStatus.kind {
                 case .failed:
-                    self.statusMessage = "Offline catalogue ready — online refresh unavailable: (refreshStatus.message)"
+                    self.statusMessage = "Offline catalogue ready — online refresh unavailable: \(refreshStatus.message)"
                 case .bundled:
                     self.statusMessage = "Bundled catalogue ready"
                 default:

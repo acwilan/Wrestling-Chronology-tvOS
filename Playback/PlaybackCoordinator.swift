@@ -25,6 +25,8 @@ final class PlaybackCoordinator: ObservableObject {
     private var progressTimer: Timer?
     private var endObserver: NSObjectProtocol?
     private var failureObserver: NSObjectProtocol?
+    private var itemStatusObservation: NSKeyValueObservation?
+    private var startupTask: Task<Void, Never>?
     private var currentCompany: CompanyID?
     private var autoplay: Bool
 
@@ -53,11 +55,10 @@ final class PlaybackCoordinator: ObservableObject {
         for source in ordered {
             do {
                 let plan = try await resolver.resolve(source)
-                guard let firstURL = plan.urls.first else { throw PlaybackError.noEligibleSource }
-                try await validateFirstAsset(firstURL)
                 let items = plan.urls.map { AVPlayerItem(url: $0) }
                 guard !items.isEmpty else { continue }
                 let queue = AVQueuePlayer(items: items)
+                queue.automaticallyWaitsToMinimizeStalling = true
                 self.player = queue
                 self.selectedSource = source
                 self.currentPart = 0
@@ -79,6 +80,10 @@ final class PlaybackCoordinator: ObservableObject {
         if save { saveProgress() }
         progressTimer?.invalidate()
         progressTimer = nil
+        itemStatusObservation?.invalidate()
+        itemStatusObservation = nil
+        startupTask?.cancel()
+        startupTask = nil
         if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
         endObserver = nil
         if let failureObserver { NotificationCenter.default.removeObserver(failureObserver) }
@@ -108,6 +113,30 @@ final class PlaybackCoordinator: ObservableObject {
     }
 
     private func observe(queue: AVQueuePlayer, key: HistoryKey) {
+        if let item = queue.currentItem {
+            itemStatusObservation = item.observe(\.status, options: [.initial, .new]) { [weak self, weak queue] item, _ in
+                guard let queue else { return }
+                Task { @MainActor [weak self] in
+                    guard let self, self.player === queue else { return }
+                    switch item.status {
+                    case .readyToPlay:
+                        self.startupTask?.cancel()
+                        self.startupTask = nil
+                    case .failed:
+                        self.failPlayback(item: item, fallbackURL: queue.currentItem?.asset as? AVURLAsset)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        startupTask = Task { @MainActor [weak self, weak queue] in
+            try? await Task.sleep(nanoseconds: 45_000_000_000)
+            guard !Task.isCancelled, let self, let queue, self.player === queue,
+                  let item = queue.currentItem, item.status != .readyToPlay else { return }
+            self.failPlayback(item: item, fallbackURL: queue.currentItem?.asset as? AVURLAsset,
+                              timeout: true)
+        }
         progressTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in
                 self?.saveProgress()
@@ -135,25 +164,26 @@ final class PlaybackCoordinator: ObservableObject {
         }
     }
 
-    private func validateFirstAsset(_ url: URL) async throws {
-        do {
-            let playable = try await withThrowingTaskGroup(of: Bool.self) { group in
-                group.addTask {
-                    let asset = AVURLAsset(url: url)
-                    return try await asset.load(.isPlayable)
-                }
-                group.addTask {
-                    try await Task.sleep(nanoseconds: 15_000_000_000)
-                    throw PlaybackError.unavailable("The provider did not respond within 15 seconds.")
-                }
-                defer { group.cancelAll() }
-                return try await group.next() ?? false
-            }
-            guard playable else { throw PlaybackError.assetNotPlayable }
-        } catch let error as PlaybackError {
-            throw error
-        } catch {
-            throw PlaybackError.unavailable("The provider could not make this recording available: (error.localizedDescription)")
+    private func failPlayback(item: AVPlayerItem, fallbackURL: AVURLAsset?, timeout: Bool = false) {
+        guard let player else { return }
+        player.pause()
+        startupTask?.cancel()
+        startupTask = nil
+        let provider = selectedSource?.displayLabel ?? "The provider"
+        if timeout {
+            state = .failed("\(provider) did not start the recording within 45 seconds. Check the Apple TV connection or try another source.")
+            return
+        }
+        if let error = item.error {
+            state = .failed("\(provider) playback could not start: \(error.localizedDescription)")
+        } else if let event = item.errorLog()?.events.last {
+            let detail = event.errorComment ?? "The provider could not deliver this recording."
+            let status = event.errorStatusCode > 0 ? " (HTTP \(event.errorStatusCode))" : ""
+            state = .failed("\(provider) playback could not start\(status): \(detail)")
+        } else if fallbackURL == nil {
+            state = .failed(PlaybackError.assetNotPlayable.localizedDescription)
+        } else {
+            state = .failed("\(provider) playback could not start. The recording may use a codec or server response that this Apple TV cannot play.")
         }
     }
 }

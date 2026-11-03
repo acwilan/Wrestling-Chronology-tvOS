@@ -7,20 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A00000000000000000000001 /* WrestlingChronologyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000001 /* WrestlingChronologyApp.swift */; };
-		A00000000000000000000002 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000002 /* Models.swift */; };
-		A00000000000000000000003 /* CatalogOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000003 /* CatalogOrdering.swift */; };
-		A00000000000000000000004 /* CatalogRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000004 /* CatalogRepository.swift */; };
-		A00000000000000000000005 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000005 /* HistoryStore.swift */; };
-		A00000000000000000000006 /* SourceResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000006 /* SourceResolver.swift */; };
-		A00000000000000000000007 /* PlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000007 /* PlaybackCoordinator.swift */; };
-		A00000000000000000000008 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000008 /* AppModel.swift */; };
-		A00000000000000000000009 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000009 /* Views.swift */; };
-		A00000000000000000000010 /* wcw-fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000010 /* wcw-fixture.json */; };
-		A00000000000000000000011 /* wwe-fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000011 /* wwe-fixture.json */; };
-		A00000000000000000000012 /* CatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000012 /* CatalogTests.swift */; };
-		A00000000000000000000013 /* ResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000013 /* ResolverTests.swift */; };
-		A00000000000000000000014 /* WrestlingChronology-tvOS.app in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C00000000000000000000001 /* WrestlingChronology-tvOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A00000000000000000000000002 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000002 /* Models.swift */; };
 		A00000000000000000000000003 /* CatalogOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000003 /* CatalogOrdering.swift */; };
 		A00000000000000000000000004 /* CatalogRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000004 /* CatalogRepository.swift */; };
@@ -29,10 +15,22 @@
 		A00000000000000000000000007 /* PlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000007 /* PlaybackCoordinator.swift */; };
 		A00000000000000000000000008 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000008 /* AppModel.swift */; };
 		A00000000000000000000000009 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000009 /* Views.swift */; };
+		A00000000000000000000001 /* WrestlingChronologyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000001 /* WrestlingChronologyApp.swift */; };
+		A00000000000000000000010 /* wcw-fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000010 /* wcw-fixture.json */; };
+		A00000000000000000000011 /* wwe-fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000011 /* wwe-fixture.json */; };
+		A00000000000000000000012 /* CatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000012 /* CatalogTests.swift */; };
+		A00000000000000000000013 /* ResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000013 /* ResolverTests.swift */; };
+		A00000000000000000000018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000018 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D00000000000000000000001 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = E00000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = F00000000000000000000001; remoteInfo = WrestlingChronology-tvOS; };
+		D00000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E00000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F00000000000000000000001;
+			remoteInfo = "WrestlingChronology-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,73 +43,381 @@
 		B00000000000000000000007 /* PlaybackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackCoordinator.swift; sourceTree = "<group>"; };
 		B00000000000000000000008 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		B00000000000000000000009 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
-		B00000000000000000000010 /* wcw-fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wcw-fixture.json; sourceTree = "<group>"; };
-		B00000000000000000000011 /* wwe-fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wwe-fixture.json; sourceTree = "<group>"; };
+		B00000000000000000000010 /* wcw-fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "wcw-fixture.json"; sourceTree = "<group>"; };
+		B00000000000000000000011 /* wwe-fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "wwe-fixture.json"; sourceTree = "<group>"; };
 		B00000000000000000000012 /* CatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogTests.swift; sourceTree = "<group>"; };
 		B00000000000000000000013 /* ResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverTests.swift; sourceTree = "<group>"; };
-		B00000000000000000000014 /* WrestlingChronology-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WrestlingChronology-tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B00000000000000000000015 /* WrestlingChronology-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WrestlingChronology-tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00000000000000000000014 /* WrestlingChronology-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WrestlingChronology-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00000000000000000000015 /* WrestlingChronology-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WrestlingChronology-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00000000000000000000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B00000000000000000000017 /* WCtv README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		B00000000000000000000017 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		B00000000000000000000018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		E00000000000000000000010 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
-		E00000000000000000000011 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
-		E00000000000000000000002 = {isa = PBXGroup; children = (E00000000000000000000003, E00000000000000000000004, E00000000000000000000005, E00000000000000000000006, E00000000000000000000007, E00000000000000000000008, E00000000000000000000009, E00000000000000000000010, E00000000000000000000016, E00000000000000000000011); sourceTree = "<group>"; };
-		E00000000000000000000003 = {isa = PBXGroup; name = CatalogDomain; path = CatalogDomain; children = (B00000000000000000000002, B00000000000000000000003); sourceTree = "<group>"; };
-		E00000000000000000000004 = {isa = PBXGroup; name = CatalogRepository; path = CatalogRepository; children = (B00000000000000000000004); sourceTree = "<group>"; };
-		E00000000000000000000005 = {isa = PBXGroup; name = History; path = History; children = (B00000000000000000000005); sourceTree = "<group>"; };
-		E00000000000000000000006 = {isa = PBXGroup; name = Playback; path = Playback; children = (B00000000000000000000006, B00000000000000000000007); sourceTree = "<group>"; };
-		E00000000000000000000007 = {isa = PBXGroup; name = Features; path = Features; children = (B00000000000000000000008, B00000000000000000000009); sourceTree = "<group>"; };
-		E00000000000000000000008 = {isa = PBXGroup; name = Resources; path = Resources; children = (B00000000000000000000010, B00000000000000000000011); sourceTree = "<group>"; };
-		E00000000000000000000009 = {isa = PBXGroup; name = Tests; path = Tests; children = (B00000000000000000000012, B00000000000000000000013); sourceTree = "<group>"; };
-		E00000000000000000000010 = {isa = PBXGroup; children = (B00000000000000000000001); name = App; path = .; sourceTree = "<group>"; };
-		E00000000000000000000011 = {isa = PBXGroup; children = (B00000000000000000000014, B00000000000000000000015); name = Products; sourceTree = "<group>"; };
-		E00000000000000000000016 = {isa = PBXGroup; children = (B00000000000000000000016, E00000000000000000000017); name = Supporting; path = .; sourceTree = "<group>"; };
-		E00000000000000000000017 = {isa = PBXGroup; children = (B00000000000000000000017); name = WCtv; path = WCtv; sourceTree = "<group>"; };
+		E00000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				E00000000000000000000003 /* CatalogDomain */,
+				E00000000000000000000004 /* CatalogRepository */,
+				E00000000000000000000005 /* History */,
+				E00000000000000000000006 /* Playback */,
+				E00000000000000000000007 /* Features */,
+				E00000000000000000000008 /* Resources */,
+				B00000000000000000000018 /* Assets.xcassets */,
+				E00000000000000000000009 /* Tests */,
+				E00000000000000000000010 /* App */,
+				E00000000000000000000016 /* Supporting */,
+				E00000000000000000000011 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E00000000000000000000003 /* CatalogDomain */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000002 /* Models.swift */,
+				B00000000000000000000003 /* CatalogOrdering.swift */,
+			);
+			path = CatalogDomain;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000004 /* CatalogRepository */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000004 /* CatalogRepository.swift */,
+			);
+			path = CatalogRepository;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000005 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000005 /* HistoryStore.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000006 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000006 /* SourceResolver.swift */,
+				B00000000000000000000007 /* PlaybackCoordinator.swift */,
+			);
+			path = Playback;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000007 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000008 /* AppModel.swift */,
+				B00000000000000000000009 /* Views.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000008 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000010 /* wcw-fixture.json */,
+				B00000000000000000000011 /* wwe-fixture.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000009 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000012 /* CatalogTests.swift */,
+				B00000000000000000000013 /* ResolverTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000010 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000001 /* WrestlingChronologyApp.swift */,
+			);
+			name = App;
+			path = .;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000011 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000014 /* WrestlingChronology-tvOS.app */,
+				B00000000000000000000015 /* WrestlingChronology-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000016 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000016 /* Info.plist */,
+				E00000000000000000000017 /* WCtv */,
+			);
+			name = Supporting;
+			path = .;
+			sourceTree = "<group>";
+		};
+		E00000000000000000000017 /* WCtv */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000017 /* README.md */,
+			);
+			path = WCtv;
+			 sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F00000000000000000000001 /* WrestlingChronology-tvOS */ = {isa = PBXNativeTarget; buildConfigurationList = F00000000000000000000011; buildPhases = (F00000000000000000000005, F00000000000000000000006, F00000000000000000000007); buildRules = ( ); dependencies = ( ); name = WrestlingChronology-tvOS; productName = WrestlingChronology-tvOS; productReference = B00000000000000000000014; productType = "com.apple.product-type.application"; };
-		F00000000000000000000002 /* WrestlingChronology-tvOSTests */ = {isa = PBXNativeTarget; buildConfigurationList = F00000000000000000000012; buildPhases = (F00000000000000000000008, F00000000000000000000009); buildRules = ( ); dependencies = (F00000000000000000000003); name = WrestlingChronology-tvOSTests; productName = WrestlingChronology-tvOSTests; productReference = B00000000000000000000015; productType = "com.apple.product-type.bundle.unit-test"; };
+		F00000000000000000000001 /* WrestlingChronology-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F00000000000000000000011 /* Build configuration list for PBXNativeTarget "WrestlingChronology-tvOS" */;
+			buildPhases = (
+				F00000000000000000000005 /* Sources */,
+				F00000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WrestlingChronology-tvOS";
+			productName = "WrestlingChronology-tvOS";
+			productReference = B00000000000000000000014 /* WrestlingChronology-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F00000000000000000000002 /* WrestlingChronology-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F00000000000000000000012 /* Build configuration list for PBXNativeTarget "WrestlingChronology-tvOSTests" */;
+			buildPhases = (
+				F00000000000000000000008 /* Sources */,
+				F00000000000000000000009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F00000000000000000000003 /* PBXTargetDependency */,
+			);
+			name = "WrestlingChronology-tvOSTests";
+			productName = "WrestlingChronology-tvOSTests";
+			productReference = B00000000000000000000015 /* WrestlingChronology-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E00000000000000000000001 /* Project object */ = {isa = PBXProject; attributes = {LastUpgradeCheck = 2720; ORGANIZATIONNAME = Community; TargetAttributes = {F00000000000000000000001 = {CreatedOnToolsVersion = 27.2;}; F00000000000000000000002 = {CreatedOnToolsVersion = 27.2; TestTargetID = F00000000000000000000001;};};}; buildConfigurationList = F00000000000000000000010; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = E00000000000000000000002; productRefGroup = E00000000000000000000011; projectDirPath = ""; projectRoot = ""; targets = (F00000000000000000000001, F00000000000000000000002); };
+		E00000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 2720;
+				ORGANIZATIONNAME = Community;
+				TargetAttributes = {
+					F00000000000000000000001 = {
+						CreatedOnToolsVersion = 27.2;
+					};
+					F00000000000000000000002 = {
+						CreatedOnToolsVersion = 27.2;
+						TestTargetID = F00000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = F00000000000000000000010 /* Build configuration list for PBXProject "WrestlingChronology-tvOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E00000000000000000000002;
+			productRefGroup = E00000000000000000000011 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F00000000000000000000001 /* WrestlingChronology-tvOS */,
+				F00000000000000000000002 /* WrestlingChronology-tvOSTests */,
+			);
+		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F00000000000000000000006 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A00000000000000000000010, A00000000000000000000011); runOnlyForDeploymentPostprocessing = 0; };
-		F00000000000000000000009 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
+		F00000000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000010 /* wcw-fixture.json in Resources */,
+				A00000000000000000000011 /* wwe-fixture.json in Resources */,
+				A00000000000000000000018 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F00000000000000000000009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		F00000000000000000000005 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A00000000000000000000001, A00000000000000000000000002, A00000000000000000000000003, A00000000000000000000000004, A00000000000000000000000005, A00000000000000000000000006, A00000000000000000000000007, A00000000000000000000000008, A00000000000000000000000009); runOnlyForDeploymentPostprocessing = 0; };
-		F00000000000000000000008 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A00000000000000000000012, A00000000000000000000013); runOnlyForDeploymentPostprocessing = 0; };
+		F00000000000000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000001 /* WrestlingChronologyApp.swift in Sources */,
+				A00000000000000000000000002 /* Models.swift in Sources */,
+				A00000000000000000000000003 /* CatalogOrdering.swift in Sources */,
+				A00000000000000000000000004 /* CatalogRepository.swift in Sources */,
+				A00000000000000000000000005 /* HistoryStore.swift in Sources */,
+				A00000000000000000000000006 /* SourceResolver.swift in Sources */,
+				A00000000000000000000000007 /* PlaybackCoordinator.swift in Sources */,
+				A00000000000000000000000008 /* AppModel.swift in Sources */,
+				A00000000000000000000000009 /* Views.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F00000000000000000000008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000012 /* CatalogTests.swift in Sources */,
+				A00000000000000000000013 /* ResolverTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F00000000000000000000003 = {isa = PBXTargetDependency; target = F00000000000000000000001; targetProxy = D00000000000000000000001; };
+		F00000000000000000000003 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F00000000000000000000001 /* WrestlingChronology-tvOS */;
+			targetProxy = D00000000000000000000001 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		F00000000000000000000020 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; ENABLE_TESTABILITY = YES; INFOPLIST_FILE = Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks"; PRODUCT_BUNDLE_IDENTIFIER = org.community.wrestling-chronology.tvOS; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = appletvos; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 3; TVOS_DEPLOYMENT_TARGET = 17.0; }; name = Debug; };
-		F00000000000000000000021 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; INFOPLIST_FILE = Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks"; PRODUCT_BUNDLE_IDENTIFIER = org.community.wrestling-chronology.tvOS; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = appletvos; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 3; TVOS_DEPLOYMENT_TARGET = 17.0; }; name = Release; };
-		F00000000000000000000022 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CLANG_ENABLE_MODULES = YES; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = org.community.wrestling-chronology.tvOSTests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = appletvos; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 3; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WrestlingChronology-tvOS.app/WrestlingChronology-tvOS"; TVOS_DEPLOYMENT_TARGET = 17.0; }; name = Debug; };
-		F00000000000000000000023 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CLANG_ENABLE_MODULES = YES; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = org.community.wrestling-chronology.tvOSTests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = appletvos; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 3; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WrestlingChronology-tvOS.app/WrestlingChronology-tvOS"; TVOS_DEPLOYMENT_TARGET = 17.0; }; name = Release; };
+		41889970309A7D7900DA013B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LT3ZSC5BDA;
+				PRODUCT_NAME = "WrestlingChronology-tvOS";
+			};
+			name = Release;
+		};
+		41889971309A7D7900DA013B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = "WrestlingChronology-tvOSTests";
+			};
+			name = Release;
+		};
+		F00000000000000000000020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LT3ZSC5BDA;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+					PRODUCT_BUNDLE_IDENTIFIER = "org.community.wrestling-chronology.tvOS";
+					PRODUCT_NAME = "$(TARGET_NAME)";
+					ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		F00000000000000000000021 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.community.wrestling-chronology.tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		F00000000000000000000022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.community.wrestling-chronology.tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WrestlingChronology-tvOS.app/WrestlingChronology-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F00000000000000000000010 /* Project configuration list */ = {isa = XCConfigurationList; buildConfigurations = (F00000000000000000000020, F00000000000000000000021); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		F00000000000000000000011 /* Target configuration list */ = {isa = XCConfigurationList; buildConfigurations = (F00000000000000000000020, F00000000000000000000000021); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		F00000000000000000000012 /* Test target configuration list */ = {isa = XCConfigurationList; buildConfigurations = (F00000000000000000000022, F00000000000000000000000023); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
+		F00000000000000000000010 /* Build configuration list for PBXProject "WrestlingChronology-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F00000000000000000000020 /* Debug */,
+				F00000000000000000000021 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F00000000000000000000011 /* Build configuration list for PBXNativeTarget "WrestlingChronology-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F00000000000000000000020 /* Debug */,
+				41889970309A7D7900DA013B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F00000000000000000000012 /* Build configuration list for PBXNativeTarget "WrestlingChronology-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F00000000000000000000022 /* Debug */,
+				41889971309A7D7900DA013B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 /* End XCConfigurationList section */
 	};
 	rootObject = E00000000000000000000001 /* Project object */;

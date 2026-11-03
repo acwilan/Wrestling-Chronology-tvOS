@@ -170,6 +170,39 @@ struct EpisodeSource: Codable, Sendable, Hashable, Identifiable {
     var archiveURLs: [URL] {
         (urls ?? [url].compactMap { $0 }).compactMap(URL.init(string:))
     }
+
+    /// A normal provider page that can be handed to the matching Apple TV app
+    /// or another installed URL handler. This is intentionally not a stream
+    /// resolver: unsupported providers stay outside the tvOS playback path.
+    var externalURL: URL? {
+        switch kind {
+        case .youtube:
+            guard let videoId, !videoId.isEmpty else { return nil }
+            return URL(string: "https://www.youtube.com/watch?v=\(videoId)")
+        case .dailymotion:
+            guard let videoId = (videoIds ?? [videoId ?? ""]).first, !videoId.isEmpty else { return nil }
+            return URL(string: "https://www.dailymotion.com/video/\(videoId)")
+        case .okru:
+            if let url, let parsed = URL(string: url), parsed.scheme == "https" { return parsed }
+            guard let videoId, !videoId.isEmpty else { return nil }
+            return URL(string: "https://ok.ru/video/\(videoId)")
+        case .archive:
+            return archiveURLs.first
+        case .unknown:
+            guard let url, let parsed = URL(string: url), parsed.scheme == "https" else { return nil }
+            return parsed
+        }
+    }
+
+    var externalActionTitle: String {
+        switch kind {
+        case .youtube: return "Open YouTube"
+        case .dailymotion: return "Open Dailymotion"
+        case .okru: return "Open OK.ru"
+        case .archive: return "Open Internet Archive"
+        case .unknown: return "Open Provider"
+        }
+    }
 }
 
 enum SourceKind: String, Codable, Sendable, CaseIterable {

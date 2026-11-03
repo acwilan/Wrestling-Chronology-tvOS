@@ -22,6 +22,7 @@ Source types observed are `archive`, `youtube`, and `okru`; the schema also desc
 - Archive playback is implemented first using direct HTTPS media URLs and AVPlayer. Multipart URLs are queued without downloading the complete recording.
 - YouTube sources remain visible but unsupported because the Android extractor is not a permitted tvOS playback strategy for this project.
 - Dailymotion metadata resolution and OK.ru public embed parsing are isolated behind disabled capabilities until sanitized fixtures and real-device playback checks pass.
+- Unsupported provider sources expose a public-page handoff from episode details. tvOS may route the HTTPS URL to an installed provider application or other system URL handler; the app does not assume that a browser or provider app exists, and it does not treat handoff as playback success.
 - Artwork URLs are treated as optional metadata. No upstream logos, posters, thumbnails, or branded icons are bundled by this port.
 
 ## Representative samples
